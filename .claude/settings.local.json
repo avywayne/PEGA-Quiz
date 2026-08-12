@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(yes \"\")",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(ls .claude)",
+      "Bash(cat .claude/launch.json)",
+      "Bash(python3 -c \"import pdfplumber; print\\('ok'\\)\")",
+      "Bash(python -c \"import pdfplumber; print\\('ok'\\)\")",
+      "PowerShell(Get-Command python, python3, py -ErrorAction SilentlyContinue)",
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(py --version 2>&1)",
+      "Bash(npm --version)"
+    ]
+  }
+}
