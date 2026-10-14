@@ -485,7 +485,7 @@ export const pdfQuestions: Question[] = [
     "id": "pdf-017",
     "type": "multiple",
     "topic": "UI / Experiencia de usuario",
-    "text": "En una aplicación minorista en línea, lavista Recibodepedido muestra una listadel pedido de productos, incluida la imagen del producto, el costo unitario y lacantidad. El costototal del pedido se muestra en la parte inferior de la vista. ¿Qué dos configuraciones en la vista Recibo deben estar juntas para mostrar la información requerida como se describe? (Escoge dos.)",
+    "text": "En una aplicación minorista en línea, la vista Recibo de pedido muestra una listadel pedido de productos, incluida la imagen del producto, el costo unitario y la cantidad. El costototal del pedido se muestra en la parte inferior de la vista. ¿Qué dos configuraciones en la vista Recibo deben estar juntas para mostrar la información requerida como se describe? (Escoge dos.)",
     "options": [
       {
         "id": "a",
@@ -968,23 +968,7 @@ export const pdfQuestions: Question[] = [
       },
       {
         "id": "d",
-        "text": "goal Answer: C 40.Al solicitar un aumento de límite de crédito, los clientes con tarjetas de crédito estándar deben proporcionar información en un proceso de Información Laboral. Las solicitudes de clientes con tarjetas de crédito Platinum saltan automáticamente este proceso. ¿Qué tarea realiza para implementar este requisito?"
-      },
-      {
-        "id": "a",
-        "text": "Agregue un paso Aprobar/Rechazar para probar el tipo de tarjeta."
-      },
-      {
-        "id": "b",
-        "text": "Agregue un campo de tipo de tarjeta verdadero/falso a una vista de usuario."
-      },
-      {
-        "id": "c",
-        "text": "Agregue una condición personalizada para iniciar el proceso probando el tipo de tarjeta."
-      },
-      {
-        "id": "d",
-        "text": "Agregar una condición de validación al tipo de tarjeta para continuar con el procesamiento."
+        "text": "goal"
       }
     ],
     "correctOptionIds": [
@@ -1173,23 +1157,23 @@ export const pdfQuestions: Question[] = [
     "id": "pdf-040",
     "type": "multiple",
     "topic": "General",
-    "text": "¿Quédosafirmaciones son verdaderas acerca de las intuiciones(insights / Reportes)? (Escoge dos)",
+    "text": "¿Qué dos afirmaciones son verdaderas acerca de las intuiciones(insights / Reportes)? (Escoge dos)",
     "options": [
       {
         "id": "a",
-        "text": "Insightstransforma las consultas de datos en visualizaciones compartibles."
+        "text": "Insights transforma las consultas de datos en visualizaciones compartibles."
       },
       {
         "id": "b",
-        "text": "Lavisibilidad siempre se comparte(Shared) en los gráficos de información."
+        "text": "La visibilidad siempre se comparte(Shared) en los gráficos de información."
       },
       {
         "id": "c",
-        "text": "Puedeeditar los datos de la aplicación directamente en una perspectiva (insight)."
+        "text": "Puede editar los datos de la aplicación directamente en una perspectiva (insight)."
       },
       {
         "id": "d",
-        "text": "Solopuede usar campos preconfigurados en una perspectiva(insight)."
+        "text": "Solo puede usar campos preconfigurados en una perspectiva(insight)."
       }
     ],
     "correctOptionIds": [
@@ -1877,9 +1861,9 @@ export const pdfQuestions: Question[] = [
   },
   {
     "id": "pdf-064",
-    "type": "multiple",
+    "type": "single",
     "topic": "General",
-    "text": "¿Qué tres opciones puede configurar para un canal de aplicación móvil? (Elige tres) (Pregunta repetida #20, solo tiene la respuesta C)",
+    "text": "¿Qué tres opciones puede configurar para un canal de aplicación móvil? Escoge una",
     "options": [
       {
         "id": "a",
@@ -1903,9 +1887,7 @@ export const pdfQuestions: Question[] = [
       }
     ],
     "correctOptionIds": [
-      "a",
-      "c",
-      "e"
+      "c"
     ],
     "source": "imported",
     "explanation": "Pregunta original del PDF #81."
@@ -1914,7 +1896,7 @@ export const pdfQuestions: Question[] = [
     "id": "pdf-065",
     "type": "single",
     "topic": "General",
-    "text": "Antes del desarrollo, su equipo crea una hoja de cálculo con elementos de trabajo para completar el trabajo pendiente. Todos los elementos de trabajo que describen los requisitos comerciales se priorizan como Debe tener. También crea elementos de trabajo para abordar: ÿ Una solicitud de mejora futura para agrupar un conjunto de pasos existentes en un formulario de varios pasos ÿ Una lista desplegable a la que le falta una de las opciones obligatorias: este elemento de trabajo está en curso porque la opción que falta impide que se realice el trabajo ¿Cómo se rellena? el backlog directamente desde la hoja de cálculo? (Pregunta repetida #80)",
+    "text": "Antes del desarrollo, su equipo crea una hoja de cálculo con elementos de trabajo para completar el trabajo pendiente. Todos los elementos de trabajo que describen los requisitos comerciales se priorizan como Debe tener. También crea elementos de trabajo para abordar: ÿ Una solicitud de mejora futura para agrupar un conjunto de pasos existentes en un formulario de varios pasos ÿ Una lista desplegable a la que le falta una de las opciones obligatorias: este elemento de trabajo está en curso porque la opción que falta impide que se realice el trabajo ¿Cómo se rellena? el backlog directamente desde la hoja de cálculo?",
     "options": [
       {
         "id": "a",
@@ -4227,26 +4209,11 @@ export const pdfQuestions: Question[] = [
       },
       {
         "id": "c",
-        "text": ".BillingAddress.Telephone-Single Answer: C 168. En una aplicación bancaria, ¿cuáles dos opciones deben usarse juntas para presentar a los usuarios un conjunto de opciones de transferencia de saldo sólo si eligen transferir un saldo a su tarjeta de crédito? (Escoge dos)"
-      },
-      {
-        "id": "a",
-        "text": "Agregar un conjunto de acciones en el diseño que contiene las ofertas de transferencia de saldo para activar una actualización"
-      },
-      {
-        "id": "b",
-        "text": "Agregar una condición visible en la casilla de verificación para la elección de transferencia de saldo"
-      },
-      {
-        "id": "c",
-        "text": "Agregar un conjunto de acciones en la casilla de verificación para que la elección de transferencia de saldo active una actualización"
-      },
-      {
-        "id": "d",
-        "text": "Agregar una condición visible en el diseño que contiene las ofertas de transferencia de saldo"
+        "text": ".BillingAddress.Telephone-Singleto"
       }
     ],
     "correctOptionIds": [
+      "a",
       "c",
       "d"
     ],

@@ -12,7 +12,9 @@
       "PowerShell(Get-Command python, python3, py -ErrorAction SilentlyContinue)",
       "PowerShell(python --version 2>&1)",
       "PowerShell(py --version 2>&1)",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "Bash(pdftotext -layout \"F:/Downloads/Pega-CSA-Test-ES.pdf\" \"C:/Users/DEFAUL~1.DES/AppData/Local/Temp/claude/F--Desktop-DevProjects-PEGA-Quiz/dc419b62-2c83-4dea-9273-c40f4d77071f/scratchpad/pdf2.txt\")",
+      "Bash(pdftotext -enc UTF-8 -layout \"F:/Downloads/Pega-CSA-Test-ES.pdf\" \"C:/Users/DEFAUL~1.DES/AppData/Local/Temp/claude/F--Desktop-DevProjects-PEGA-Quiz/dc419b62-2c83-4dea-9273-c40f4d77071f/scratchpad/pdf2u.txt\")"
     ]
   }
 }

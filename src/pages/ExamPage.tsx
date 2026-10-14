@@ -64,7 +64,20 @@ export default function ExamPage() {
       } else {
         next = current.includes(optionId) ? current.filter((id) => id !== optionId) : [...current, optionId];
       }
-      return { ...s, answers: { ...s.answers, [q.id]: next } };
+      // Changing the answer clears the green/red grading so a new selection never
+      // shows its colour on its own. The "revealed" flag is NOT touched, so the
+      // "Ver respuestas" button stays used-up: it can only be pressed once per question.
+      const grading = (s.grading ?? []).filter((id) => id !== q.id);
+      return { ...s, answers: { ...s.answers, [q.id]: next }, grading };
+    });
+  }
+
+  function revealAnswers() {
+    update((s) => {
+      const q = s.questions[s.currentIndex];
+      const already = s.revealed ?? [];
+      if (already.includes(q.id)) return s;
+      return { ...s, revealed: [...already, q.id], grading: [...(s.grading ?? []), q.id] };
     });
   }
 
@@ -97,6 +110,15 @@ export default function ExamPage() {
   const isFlagged = session.flagged.includes(question.id);
   const isSaved = session.savedForLater.includes(question.id);
   const unansweredCount = session.questions.length - answeredCount;
+
+  // Whether the "Ver respuestas" button has already been used for this question (permanent).
+  const isRevealed = (session.revealed ?? []).includes(question.id);
+  // Whether the green/red grading is currently shown (cleared as soon as the answer changes).
+  const isGrading = (session.grading ?? []).includes(question.id);
+  // A single-choice question needs exactly one selection; a multiple-choice one
+  // needs as many selections as it has correct options.
+  const requiredSelections = question.type === 'single' ? 1 : question.correctOptionIds.length;
+  const isComplete = givenAnswers.length === requiredSelections;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -137,24 +159,62 @@ export default function ExamPage() {
             <div className="space-y-2">
               {question.options.map((opt) => {
                 const checked = givenAnswers.includes(opt.id);
+                // When revealed, only the user's own selections are graded: green if
+                // that choice is correct, red if not. Correct options the user did not
+                // pick are never highlighted, so the right answer is not given away.
+                const isCorrectChoice = checked && question.correctOptionIds.includes(opt.id);
+                const isWrongChoice = checked && !question.correctOptionIds.includes(opt.id);
+                let stateClass = checked
+                  ? 'border-sky-500 bg-sky-950/40'
+                  : 'border-slate-800 hover:border-slate-700';
+                if (isGrading && isCorrectChoice) {
+                  stateClass = 'border-emerald-500 bg-emerald-950/40';
+                } else if (isGrading && isWrongChoice) {
+                  stateClass = 'border-rose-500 bg-rose-950/40';
+                }
                 return (
                   <label
                     key={opt.id}
-                    className={`flex items-start gap-3 rounded-lg border p-3 cursor-pointer transition ${
-                      checked ? 'border-sky-500 bg-sky-950/40' : 'border-slate-800 hover:border-slate-700'
-                    }`}
+                    className={`flex items-start gap-3 rounded-lg border p-3 cursor-pointer transition ${stateClass}`}
                   >
                     <input
                       type={question.type === 'single' ? 'radio' : 'checkbox'}
                       name={question.id}
                       checked={checked}
                       onChange={() => selectOption(opt.id)}
-                      className="mt-1 accent-sky-500"
+                      className={`mt-1 ${
+                        isGrading && isCorrectChoice
+                          ? 'accent-emerald-500'
+                          : isGrading && isWrongChoice
+                            ? 'accent-rose-500'
+                            : 'accent-sky-500'
+                      }`}
                     />
                     <span className="text-sm text-slate-200">{opt.text}</span>
                   </label>
                 );
               })}
+            </div>
+
+            <div className="pt-1">
+              {!isRevealed ? (
+                <button
+                  onClick={revealAnswers}
+                  disabled={!isComplete}
+                  className="rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-30 disabled:cursor-not-allowed px-4 py-2 text-sm font-medium"
+                >
+                  Ver respuestas
+                </button>
+              ) : isGrading ? (
+                <p className="text-sm text-slate-400">
+                  {givenAnswers.every((id) => question.correctOptionIds.includes(id)) &&
+                  givenAnswers.length === question.correctOptionIds.length
+                    ? '✓ Correcto'
+                    : 'Hay respuestas incorrectas (en rojo). Puedes cambiar tu selección.'}
+                </p>
+              ) : (
+                <p className="text-sm text-slate-500 italic">Ya usaste "Ver respuestas" en esta pregunta.</p>
+              )}
             </div>
 
             <div className="flex flex-wrap gap-3 pt-2">

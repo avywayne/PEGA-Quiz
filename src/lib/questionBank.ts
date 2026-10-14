@@ -1,6 +1,7 @@
 import type { Question, QuestionSource } from '../types/exam';
 import { generatedQuestions } from '../data/generatedQuestions';
 import { pdfQuestions } from '../data/pdfQuestions';
+import { pdfQuestions2 } from '../data/pdfQuestions2';
 import { loadJSON, saveJSON, STORAGE_KEYS } from './storage';
 import { shuffle } from './shuffle';
 
@@ -14,13 +15,19 @@ export function getImportedQuestions(): Question[] {
   return [...pdfQuestions, ...getUserImportedQuestions()];
 }
 
+/** Bundled "Solo preguntas del PDF 2.0" bank (Pega-CSA-Test-ES.pdf). */
+export function getPdf2Questions(): Question[] {
+  return pdfQuestions2;
+}
+
 export function getAllQuestions(): Question[] {
-  return [...generatedQuestions, ...getImportedQuestions()];
+  return [...generatedQuestions, ...getImportedQuestions(), ...pdfQuestions2];
 }
 
 export function getQuestionsBySource(source: QuestionSource): Question[] {
   if (source === 'generated') return generatedQuestions;
   if (source === 'imported') return getImportedQuestions();
+  if (source === 'pdf2') return pdfQuestions2;
   return getAllQuestions();
 }
 
@@ -51,7 +58,9 @@ export function importQuestions(raw: unknown, topicFallback = 'Importado'): Impo
   }
 
   const existing = getUserImportedQuestions();
-  const existingIds = new Set([...generatedQuestions, ...pdfQuestions, ...existing].map((q) => q.id));
+  const existingIds = new Set(
+    [...generatedQuestions, ...pdfQuestions, ...pdfQuestions2, ...existing].map((q) => q.id),
+  );
   const toAdd: Question[] = [];
 
   raw.forEach((item, idx) => {

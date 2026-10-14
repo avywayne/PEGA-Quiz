@@ -12,6 +12,11 @@ const SOURCE_OPTIONS: { value: QuestionSource; title: string; description: strin
     description: 'Usa únicamente las preguntas que importaste desde tu documento.',
   },
   {
+    value: 'pdf2',
+    title: 'Solo preguntas del PDF 2.0',
+    description: 'Banco extraído del examen de práctica Pega CSA (Pega-CSA-Test-ES).',
+  },
+  {
     value: 'mixed',
     title: 'Mezcladas',
     description: 'Combina las preguntas del PDF con las de práctica generadas.',
@@ -99,8 +104,8 @@ export default function HomePage() {
             <label className="text-sm text-slate-300">¿Con qué preguntas quieres hacer el examen?</label>
             <div className="grid gap-2">
               {SOURCE_OPTIONS.map((opt) => {
-                const disabled = opt.value !== 'generated' && importedCount === 0;
-                const count = disabled ? 0 : getQuestionsBySource(opt.value).length;
+                const count = getQuestionsBySource(opt.value).length;
+                const disabled = count === 0;
                 const selected = source === opt.value;
                 return (
                   <button

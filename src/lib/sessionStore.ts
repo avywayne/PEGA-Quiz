@@ -24,6 +24,8 @@ export function startNewExam(config: ExamConfig): ExamSession {
     answers: {},
     flagged: [],
     savedForLater: [],
+    revealed: [],
+    grading: [],
     currentIndex: 0,
     startedAt: now,
     endsAt: now + config.durationMinutes * 60_000,

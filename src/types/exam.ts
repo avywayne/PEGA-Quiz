@@ -24,7 +24,7 @@ export interface QuestionBank {
   questions: Question[];
 }
 
-export type QuestionSource = 'generated' | 'imported' | 'mixed';
+export type QuestionSource = 'generated' | 'imported' | 'pdf2' | 'mixed';
 
 export interface ExamConfig {
   totalQuestions: number;
@@ -41,6 +41,10 @@ export interface ExamSession {
   answers: AnswerMap;
   flagged: string[];
   savedForLater: string[];
+  /** ids of questions where the user has used "Ver respuestas" (once per question, permanent) */
+  revealed: string[];
+  /** ids of questions currently showing the green/red grading (cleared when the answer changes) */
+  grading: string[];
   currentIndex: number;
   startedAt: number;
   endsAt: number;
